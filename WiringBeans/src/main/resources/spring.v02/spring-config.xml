@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Person Beans -->
+	<!-- Bean Setter Injection -->
+	<bean id="jondoe" class="com.skills421.v02.model.Person">
+		<property name="name" value="Jon Doe" />
+	</bean>
+
+	<!-- Bean Setter Injection -->
+	<bean id="janedoe" class="com.skills421.v02.model.Person">
+		<property name="name" value="Jane Doe" />
+		<property name="age" value="18" />
+		<property name="email" value="jane.doe@gmail.com" />
+		<property name="address" ref="london" />
+	</bean>
+
+	<!-- Bean Constructor Injection -->
+	<bean id="markdoe" class="com.skills421.v02.model.Person">
+		<constructor-arg index="0" value="Mark Doe" />
+		<constructor-arg index="1" value="19" />
+		<constructor-arg index="2" value="mark.doe@gmail.com" />
+		<constructor-arg index="3" ref="leeds" />
+	</bean>
+
+	<!-- Bean Constructor Injection - Alias -->
+	<bean id="alexwhite" class="com.skills421.v02.model.Person">
+		<constructor-arg index="0" value="Alex White" />
+		<constructor-arg index="1" value="19" />
+		<constructor-arg index="2" value="alex.white@gmail.com" />
+		<constructor-arg index="3" ref="uni" />
+	</bean>
+
+	<!-- Bean Constructor Injection - Alias -->
+	<bean id="alicejenkins" class="com.skills421.v02.model.Person">
+		<property name="name" value="Alice Jenkins" />
+		<property name="age" value="18" />
+		<property name="email" value="alice.jenkins@gmail.com" />
+		<property name="address" ref="uni" />
+	</bean>
+
+	<!-- Bean Constructor Injection - with Inner Beans -->
+	<bean id="jimdoe" class="com.skills421.v02.model.Person">
+		<constructor-arg index="0" value="Jim Doe" />
+		<constructor-arg index="1" value="15" />
+		<constructor-arg index="2" value="jim.doe@gmail.com" />
+		<constructor-arg index="3">
+			<!-- Inner Bean Constructor Injection -->
+			<bean class="com.skills421.v02.model.Address">
+				<constructor-arg index="0">
+					<list>
+						<value>18 Main Street</value>
+						<value>Little Somewhere</value>
+					</list>
+				</constructor-arg>
+				<constructor-arg index="1" value="Leeds" />
+				<constructor-arg index="2" value="West Yorkshire" />
+				<constructor-arg index="3" value="LS1 1AA" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<!-- Bean Setter Injection - List of Previous Addresses -->
+	<bean id="papadoe" class="com.skills421.v02.model.Person">
+		<property name="name" value="Papa Doe" />
+		<property name="age" value="54" />
+		<property name="email" value="papa.doe@gmail.com" />
+		<property name="address" ref="london" />
+		<property name="previousAddresses">
+			<list>
+				<ref bean="uni" />
+				<ref bean="manchester" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Bean Constructor Injection - List of Previous Addresses -->
+	<bean id="mamadoe" class="com.skills421.v02.model.Person">
+		<constructor-arg index="0" value="Mama Doe" />
+		<constructor-arg index="1" value="42" />
+		<constructor-arg index="2" value="mama.doe@gmail.com" />
+		<constructor-arg index="3" ref="london" />
+		<property name="previousAddresses">
+			<list>
+				<ref bean="manchester" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Address Beans -->
+	<!-- Bean Setter Injection -->
+	<bean id="london" class="com.skills421.v02.model.Address">
+		<property name="addressLines">
+			<list>
+				<value>House of Commons</value>
+				<value>Parliament Square</value>
+			</list>
+		</property>
+		<property name="town" value="London" />
+		<property name="county" value="Greater London" />
+		<property name="postcode" value="SW1 1AA" />
+	</bean>
+
+	<!-- Bean Constructor Injection -->
+	<bean id="leeds" class="com.skills421.v02.model.Address">
+		<constructor-arg index="0">
+			<list>
+				<value>23 Main Street</value>
+				<value>Little Somewhere</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg index="1" value="Leeds" />
+		<constructor-arg index="2" value="West Yorkshire" />
+		<constructor-arg index="3" value="LS1 1AA" />
+	</bean>
+
+	<!-- Bean Constructor Injection -->
+	<bean id="manchester" class="com.skills421.v02.model.Address">
+		<constructor-arg index="0">
+			<list>
+				<value>14 Town Plaza</value>
+				<value>Inner Township</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg index="1" value="Manchester" />
+		<constructor-arg index="2" value="Greater Manchester" />
+		<constructor-arg index="3" value="MC15 1AA" />
+	</bean>
+
+	<!-- AddressBook -->
+	<bean id="emptyAddressBook" class="com.skills421.v02.model.AddressBook"
+		autowire="byName">
+	</bean>
+
+	<bean id="DoeAddressBook1" class="com.skills421.v02.model.AddressBook"
+		autowire="byName">
+		<property name="contacts">
+			<list>
+				<ref bean="jondoe" />
+				<ref bean="janedoe" />
+				<ref bean="markdoe" />
+				<ref bean="papadoe" />
+				<ref bean="mamadoe" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="DoeAddressBook2" class="com.skills421.v02.model.AddressBook"
+		autowire="byName">
+		<property name="contacts">
+			<list value-type="com.skills421.v02.model.Person">
+				<ref bean="jondoe" />
+				<ref bean="janedoe" />
+				<ref bean="markdoe" />
+				<ref bean="papadoe" />
+				<ref bean="mamadoe" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="familyAddressBook" class="com.skills421.v02.model.AddressBook"
+		autowire="byName" scope="prototype">
+		<property name="contacts">
+			<list value-type="com.skills421.v02.model.Person">
+				<ref bean="jondoe" />
+				<ref bean="janedoe" />
+				<ref bean="markdoe" />
+				<ref bean="papadoe" />
+				<ref bean="mamadoe" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Aliases -->
+	<alias name="leeds" alias="uni" />
+	<alias name="london" alias="home" />
+
+</beans>

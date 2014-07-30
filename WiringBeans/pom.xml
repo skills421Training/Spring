@@ -6,19 +6,21 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
-		<java.version>1.7</java.version>
-		<junit.version>4.11</junit.version>
-		<spring.version>3.2.10.RELEASE</spring.version>
+		<!-- v01 --><java.version>1.7</java.version>
+		<!-- v01 --><junit.version>4.11</junit.version>
+		<!-- v01 --><spring.version>3.2.10.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
 		<!-- Spring 3 Dependencies -->
+		<!-- v01 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		
+		<!-- v01 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -26,6 +28,7 @@
 		</dependency>
 		
 		<!-- JUnit -->
+		<!-- v01 -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -36,6 +39,7 @@
 	<build>
 		<plugins>
 			<!-- Java Version -->
+			<!-- v01 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

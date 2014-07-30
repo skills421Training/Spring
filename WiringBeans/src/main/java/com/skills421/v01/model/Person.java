@@ -1,4 +1,4 @@
-package com.skills421.model;
+package com.skills421.v01.model;
 
 public class Person
 {

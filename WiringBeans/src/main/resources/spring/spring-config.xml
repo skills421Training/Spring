@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="jonDoe" class="com.skills421.model.Person">
+       <property name="firstname" value="Jon"/>
+       <property name="lastname" value="Doe"/>
+       <property name="age" value="21"/>
+       <property name="height" value="1.9"/>
+   </bean>
+</beans>
